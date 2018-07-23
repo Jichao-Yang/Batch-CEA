@@ -1,6 +1,6 @@
 %# Prompt for creation
-promptMessage = sprintf('Do you wish to create a new file');
-titleBarCaption = 'Yes or No';
+promptMessage = sprintf('Do you wish to create a new file?');
+titleBarCaption = 'New Worksheet';
 numberOfUsers = 1;
 buttonSelections = zeros(1, numberOfUsers); % Preallocate.
 for userNumber = 1 : numberOfUsers
