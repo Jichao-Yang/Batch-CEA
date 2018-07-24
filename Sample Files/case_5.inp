@@ -1,0 +1,8 @@
+problem
+    hp   p,bar=8.1,  t,k=298
+react
+  fuel=(CH2)x(cr) mw=22  t,k=298  
+  oxid=O2 mw=82  t,k=298  
+output
+    plot p t mw gam %f o/f phi,eq.ratio
+end
