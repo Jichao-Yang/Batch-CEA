@@ -156,13 +156,15 @@ function startServ1
    % Load data from an excel file
    % Get Workbook interface and open file
    exlWkbk = exl.Workbooks; 
-   exlFile = exlWkbk.Open([docroot '/techdoc/matlab_external/examples/input_resp_data.xls']);
+   %exlFile = exlWkbk.Open([docroot '/techdoc/matlab_external/examples/input_resp_data.xls']);
+  [FileName, FilePath] = uigetfile('*.xls*', 'Open Excel File');
+ exlFile = exlWkbk.Open(fullfile(FilePath, FileName)); %Open excel file chosen by user
    % Get interface for Sheet2 and read data into range object
-   exlSheet1 = exlFile.Sheets.Item('Sheet2');
-   robj = exlSheet1.Columns.End(4);
+   exlSheet2 = exlFile.Sheets.Item('Sheet2');
+   robj = exlSheet2.Columns.End(4);
    numrows = robj.row;
    dat_range = ['A1:G' num2str(numrows)]; 
-   rngObj = exlSheet1.Range(dat_range);
+   rngObj = exlSheet2.Range(dat_range);
    % Read data from excel range object into MATLAB cell array
    exlData = rngObj.Value; 
    exl.registerevent({'WorkbookBeforeClose',@close_event1});
