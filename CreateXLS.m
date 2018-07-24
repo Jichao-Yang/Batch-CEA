@@ -37,11 +37,6 @@ if val == true
     data=ones(10,4);      %Sample 2-dimensional data
     col_header={'problem_type','pressure_unit', 'pressure_val', 'temp_unit', 'temp_val', 'reactant_amount_unit','reactant_temp_unit','fuel_name','fuel_amount','fuel_temp', 'oxid_name', 'oxid_amount', 'oxid_temp', 'output'};     %Row cell array (for column labels)
 
-    %row_header(1:10,1)={'Trial'};     %Column cell array (for row labels)
-    row_header = strings([trials,1]);
-    row_headerType = strings([trials,1]);
-    row_headerPressure = strings([trials,1]);
-    row_headerTemp = strings([trials,1]);
     for i = 1: trials
         row_header(i,1) = {sprintf('%s_%d', 'trial', i)};
         row_headerType(i,1)={sprintf('hp')}; 
