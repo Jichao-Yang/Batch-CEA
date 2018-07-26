@@ -1,0 +1,8 @@
+%%Equations for big Gamma and C*theoretical (cth)
+gam = 3
+mw = 
+Tc =
+Pe = 
+gamb = sqrt(gam)*(2/(gam + 1))^((gam + 1)/(2*(gam - 1)))
+cth = (1/gamb)*sqrt(((8314)/mw)*Tc) 
+cf = gamb*sqrt(((2*gam)/(gam-1))*((1-(Pe/1000)^((gam -1)/gam))))
