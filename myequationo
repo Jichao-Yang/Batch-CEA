@@ -14,3 +14,5 @@ cf = gamb*sqrt(((2*gam)/(gam-1))*((1-(Pe/1000)^((gam -1)/gam))))
 ispth = ((cf*cth)/(9.80665))
 end
 
+
+
