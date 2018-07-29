@@ -133,5 +133,13 @@ else
         Excel.Quit();
     end
 end
+
+% ==============calculate necessary variables=============
+xlswrite('CEAdata.xls', {'Big_gamma','C_star_theoretical','C_F_0','ISP_theoretical'}, 'Sheet2', 'I1');
+for i = 1:case_num
+    [gamb,cth,cf,ispth] = myequationo(1,i);
+    xlswrite('CEAdata.xls', [gamb,cth,cf,ispth], 'Sheet2', sprintf('%s%d', 'I', i+1));
+end
+
 winopen('CEAdata.xls');
 
