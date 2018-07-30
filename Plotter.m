@@ -1,51 +1,82 @@
 clear; clc;
-    %answer = inputdlg('Enter Fuel Density 1:',...
-                % 'Sample', [1 50]);
-             density1 = 2700; %str2num(answer{1});
-             
-    answer1 = inputdlg('Enter Fuel Composition Percentage for Test 1:',...
-                 'Sample', [1 50]);
-             percent = str2num(answer1{1});
-            
-    answer1 = inputdlg('Enter Fuel Composition Percentage for Test 2:',...
-                 'Sample', [1 50]);
-             percent1 = str2num(answer1{1});         
-     
-    answer1 = inputdlg('Enter Fuel Composition Percentage for Test 3:',...
-                 'Sample', [1 50]);
-             percent2 = str2num(answer1{1});         
-    %answer2 = inputdlg('Enter Fuel Density 2:',...
-                 %'Sample', [1 50]);
-             density2 = 834; %str2num(answer2{1});
-            
+%answer = inputdlg('Enter Fuel Density 1:',...
+% 'Sample', [1 50]);
+density1 = 2700; %str2num(answer{1});
+dataset = xlsread('CEAdata.xls','Sheet3','A1:I91');
+
+answer1 = inputdlg('Enter Fuel Composition Percentage for Test 1:',...
+    'Sample', [1 50]);
+percent = str2num(answer1{1});
+
+answer1 = inputdlg('Enter Fuel Composition Percentage for Test 2:',...
+    'Sample', [1 50]);
+percent1 = str2num(answer1{1});
+
+answer1 = inputdlg('Enter Fuel Composition Percentage for Test 3:',...
+    'Sample', [1 50]);
+percent2 = str2num(answer1{1});
+%answer2 = inputdlg('Enter Fuel Density 2:',...
+%'Sample', [1 50]);
+density2 = 834; %str2num(answer2{1});
+
+rho = dataset(:,4);
+rho1 = dataset(:,5);
+rho2 = dataset(:,6);
+
 density = 1/(((percent)/100)/(density1)+((100 - percent)/100)/(density2));
 density1 = 1/(((percent1)/100)/(density1)+((100 - percent1)/100)/(density2));
 density2 = 1/(((percent2)/100)/(density1)+((100 - percent2)/100)/(density2));
 
-dataset = xlsread('CEAdata.xls','Sheet2','B1:N99');
+rhof = 1/((((rho)/100)/density)+(((1-rho)/100)/1.141));
+rhof1 = 1/((((rho1)/100)/density1)+(((1-rho1)/100)/1.141));
+rhof3 = 1/((((rho2)/100)/density2)+(((1-rho2)/100)/1.141));
 
+%====================FirstGraph====================%
 x = dataset(:,7); % Untested
-y = dataset(:,2); % Untested
+t = dataset(:,1); % First trial temperature
+t1 = dataset(:,2); % Second trial temperature
+t2 = dataset(:,3); % Third trial temperature
 
-ax1 = subplot(3,1,1); % top subplot
-plot(ax1,x,y)
-title(ax1,'Tc vs \phi')
+ax1 = subplot(3,1,1); % Top subplot
+p = plot(ax1,x,t);
+title(ax1,'TC vs \phi')
 ylabel(ax1,'TC')
 xlabel(ax1,'\phi')
 
+hold on
+plot(ax1,x,t1)
 
-y2 = dataset(:,11); % Untested
+hold on
+plot(ax1,x,t2)
+legend(sprintf('%d%s',percent2','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent,'% AL'))
+hold off
+p(1).LineWidth = 2;
+%====================SecondGraph====================%
 
-ax2 = subplot(3,1,2); % bottom subplot
-plot(ax2,x,y2)
+isp = dataset(:,7); % First trial temperature
+isp1 = dataset(:,8); % Second trial temperature
+isp2 = dataset(:,9); % Third trial temperature
+
+ax2 = subplot(3,1,2); % Top subplot
+p = plot(ax2,x,isp);
 title(ax2,'Isp vs \phi')
 ylabel(ax2,'Isp')
 xlabel(ax2,'\phi')
 
+hold on
+plot(ax2,x,isp1)
 
-y3 = density * dataset(:,11); % Untested
-y4 = density * dataset(:,12); % Untested
-y5 = density * dataset(:,13); % Untested
+hold on
+plot(ax2,x,isp2)
+legend(sprintf('%d%s',percent2','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent,'% AL'))
+hold off
+p(1).LineWidth = 2;
+
+%====================ThirdGraph====================%
+
+y3 = rho .* dataset(:,7); % Untested
+y4 = rho1 .* dataset(:,8); % Untested
+y5 = rho2 .* dataset(:,9); % Untested
 
 ax3 = subplot(3,1,3); % bottom subplot
 p = plot(ax3,x,y3);
@@ -59,5 +90,7 @@ plot(ax3,x,y4)
 hold on
 plot(ax3,x,y5)
 legend(sprintf('%d%s',percent2','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent,'% AL'))
+
 hold off
+
 p(1).LineWidth = 2;
