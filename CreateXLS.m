@@ -36,7 +36,7 @@ if val == true
              trials = str2num(answer{1});
     data=ones(10,4);      %Sample 2-dimensional data
     col_header={'problem_type','pressure_unit', 'pressure_val', 'temp_unit', 'temp_val', 'reactant_amount_unit','reactant_temp_unit','fuel_name','fuel_amount','fuel_temp', 'oxid_name', 'oxid_amount', 'oxid_temp', 'output'};     %Row cell array (for column labels)
-
+    Data_read={'t1','t2','t3','%f1','%f2','%f3','ISP_theoretical1','ISP_theoretical2','ISP_theoretical3'};     %Row cell array (for column labels)
     for i = 1: trials
         row_header(i,1) = {sprintf('%s_%d', 'trial', i)};
         row_headerType(i,1)={sprintf('hp')}; 
@@ -44,6 +44,7 @@ if val == true
         row_headerTemp(i,1)={sprintf('k')}; 
     end
     xlswrite('CEAdata.xls',col_header,'Sheet1','B1');     %Write column header
+    xlswrite('CEAdata.xls',Data_read,'Sheet3','A1');     %Write column header
     xlswrite('CEAdata.xls',row_header,'Sheet1','A2');      %Write row header
     xlswrite('CEAdata.xls',row_headerType,'Sheet1','B2');      %Write row header
     xlswrite('CEAdata.xls',row_headerPressure,'Sheet1','C2');      %Write row header
