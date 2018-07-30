@@ -2,7 +2,8 @@ clear; clc;
 %answer = inputdlg('Enter Fuel Density 1:',...
 % 'Sample', [1 50]);
 densityAL = 2700; %str2num(answer{1});
-dataset = xlsread('CEAdata.xls','Sheet3','A1:I10');
+dataset = xlsread('CEAdata.xls','Sheet3','A1:I11');
+datasetphi = xlsread('CEAdata.xls','Sheet2','A1:H11');
 
 answer1 = inputdlg('Enter Fuel Composition Percentage for Test 1:',...
     'Sample', [1 50]);
@@ -32,7 +33,7 @@ rhof1 = 1/((((rho1)/100)/density1)+(((1-rho1)/100)/1141));
 rhof3 = 1/((((rho2)/100)/density2)+(((1-rho2)/100)/1141));
 
 %====================FirstGraph====================%
-x = dataset(:,7); % Untested
+x = datasetphi(:,7); % Untested
 t = dataset(:,1); % First trial temperature
 t1 = dataset(:,2); % Second trial temperature
 t2 = dataset(:,3); % Third trial temperature
@@ -48,7 +49,7 @@ plot(ax1,x,t1)
 
 hold on
 plot(ax1,x,t2)
-legend(sprintf('%d%s',percent2','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent,'% AL'))
+legend(sprintf('%d%s',percent','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent2,'% AL'))
 hold off
 p(1).LineWidth = 2;
 %====================SecondGraph====================%
@@ -68,7 +69,7 @@ plot(ax2,x,isp1)
 
 hold on
 plot(ax2,x,isp2)
-legend(sprintf('%d%s',percent2','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent,'% AL'))
+legend(sprintf('%d%s',percent','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent2,'% AL'))
 hold off
 p(1).LineWidth = 2;
 
@@ -89,7 +90,7 @@ plot(ax3,x,y4)
 
 hold on
 plot(ax3,x,y5)
-legend(sprintf('%d%s',percent2','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent,'% AL'))
+legend(sprintf('%d%s',percent','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent2,'% AL'))
 
 hold off
 
