@@ -2,7 +2,7 @@ clear; clc;
 %answer = inputdlg('Enter Fuel Density 1:',...
 % 'Sample', [1 50]);
 density1 = 2700; %str2num(answer{1});
-dataset = xlsread('CEAdata.xls','Sheet3','A1:I91');
+dataset = xlsread('CEAdata.xls','Sheet3','A1:I10');
 
 answer1 = inputdlg('Enter Fuel Composition Percentage for Test 1:',...
     'Sample', [1 50]);
