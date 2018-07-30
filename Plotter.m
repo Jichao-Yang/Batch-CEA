@@ -1,7 +1,7 @@
 clear; clc;
 %answer = inputdlg('Enter Fuel Density 1:',...
 % 'Sample', [1 50]);
-densityAL = 2700; %str2num(answer{1});
+densityAL = 2.700; %str2num(answer{1});
 dataset = xlsread('CEAdata.xls','Sheet3','A1:I11');
 datasetphi = xlsread('CEAdata.xls','Sheet2','A1:H11');
 
@@ -18,7 +18,7 @@ answer1 = inputdlg('Enter Fuel Composition Percentage for Test 3:',...
 percent2 = str2num(answer1{1});
 %answer2 = inputdlg('Enter Fuel Density 2:',...
 %'Sample', [1 50]);
-densityWAX = 834; %str2num(answer2{1});
+densityWAX = 0.834; %str2num(answer2{1});
 
 rho = dataset(:,4);
 rho1 = dataset(:,5);
@@ -28,9 +28,9 @@ density = 1/(((percent)/100)/(densityAL)+((100 - percent)/100)/(densityWAX));
 density1 = 1/(((percent1)/100)/(densityAL)+((100 - percent1)/100)/(densityWAX));
 density2 = 1/(((percent2)/100)/(densityAL)+((100 - percent2)/100)/(densityWAX));
 
-rhof = 1/((((rho)/100)/density)+(((1-rho)/100)/1141));
-rhof1 = 1/((((rho1)/100)/density1)+(((1-rho1)/100)/1141));
-rhof3 = 1/((((rho2)/100)/density2)+(((1-rho2)/100)/1141));
+rhof = 1/((((rho)/100)/density)+((1-(rho/100))/1.141));
+rhof1 = 1/((((rho1)/100)/density1)+((1-(rho1/100))/1.141));
+rhof2 = 1/((((rho2)/100)/density1)+((1-(rho2/100))/1.141));
 
 %====================FirstGraph====================%
 x = datasetphi(:,7); % Untested
@@ -75,9 +75,9 @@ p(1).LineWidth = 2;
 
 %====================ThirdGraph====================%
 
-y3 = rho .* dataset(:,7); % Untested
-y4 = rho1 .* dataset(:,8); % Untested
-y5 = rho2 .* dataset(:,9); % Untested
+y3 = (1/100) .* rho .* dataset(:,7); % Untested
+y4 = (1/100) .* rho1 .* dataset(:,8); % Untested
+y5 = (1/100) .* rho2 .* dataset(:,9); % Untested
 
 ax3 = subplot(3,1,3); % bottom subplot
 p = plot(ax3,x,y3);
