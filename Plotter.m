@@ -95,3 +95,5 @@ legend(sprintf('%d%s',percent','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('
 hold off
 
 p(1).LineWidth = 2;
+
+
