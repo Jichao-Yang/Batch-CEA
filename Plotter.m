@@ -58,6 +58,6 @@ plot(ax3,x,y4)
 
 hold on
 plot(ax3,x,y5)
-
+legend(sprintf('%d%s',percent2','% AL'),sprintf('%d%s',percent1,'% AL'),sprintf('%d%s',percent,'% AL'))
 hold off
 p(1).LineWidth = 2;
