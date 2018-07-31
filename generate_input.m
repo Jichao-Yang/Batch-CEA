@@ -6,29 +6,33 @@ function inp = generate_input(list)
     temp_val = list(5); temp_val = sprintf('%d',temp_val{1});
     reactant_amount_unit = list(6); reactant_amount_unit = reactant_amount_unit{1};
     reactant_temp_unit = list(7); reactant_temp_unit = reactant_temp_unit{1};
-    fuel_name = list(8); fuel_name = fuel_name{1};
-    fuel_amount = list(9); fuel_amount = sprintf('%d',fuel_amount{1});
-    fuel_temp = list(10); fuel_temp = sprintf('%d',fuel_temp{1});
-    oxid_name = list(11); oxid_name = oxid_name{1};
-    oxid_amount = list(12); oxid_amount = sprintf('%d',oxid_amount{1});
-    oxid_temp = list(13); oxid_temp = sprintf('%d',oxid_temp{1});
-    output = list(14); output = output{1};
+    fuel_1_name = list(8); fuel_1_name = fuel_1_name{1};
+    fuel_1_amount = list(9); fuel_1_amount = sprintf('%d',fuel_1_amount{1});
+    fuel_1_temp = list(10); fuel_1_temp = sprintf('%d',fuel_1_temp{1});
+    fuel_2_name = list(11); fuel_2_name = fuel_2_name{1};
+    fuel_2_amount = list(12); fuel_2_amount = sprintf('%d',fuel_2_amount{1});
+    fuel_2_temp = list(13); fuel_2_temp = sprintf('%d',fuel_2_temp{1});
+    oxid_name = list(14); oxid_name = oxid_name{1};
+    oxid_amount = list(15); oxid_amount = sprintf('%d',oxid_amount{1});
+    oxid_temp = list(16); oxid_temp = sprintf('%d',oxid_temp{1});
+    output = list(17); output = output{1};
  
-    problem_head = ['problem   ', char(10)];
-    problem_body = [strcat({'    '}, problem_type, {'   '}, 'p,', pressure_unit, '=', pressure_val, {',  '}, 't,', temp_unit, '=', temp_val)];
-    problem_body = [problem_body{1}, char(10)];
+    problem_head = ['problem   ', newline];
+    problem_body = ['    ', problem_type, '   ', 'p,', pressure_unit, '=', pressure_val, ',  ', 't,', temp_unit, '=', temp_val];
+    problem_body = [problem_body, newline];
  
-    react_head = 'react  ';
-    react_body_fuel = strcat({'  '}, 'fuel=', fuel_name, {' '}, reactant_amount_unit, '=', fuel_amount, {'  '}, 't,', reactant_temp_unit, '=', fuel_temp, {'  '});
-    react_body_oxid = strcat({'  '}, 'oxid=', oxid_name, {' '}, reactant_amount_unit, '=', oxid_amount, {'  '}, 't,', reactant_temp_unit, '=', oxid_temp, {'  '});
-    react_body_fuel = [react_body_fuel{1}, char(10)]; react_body_oxid = [react_body_oxid{1}, char(10)];
+    react_head = ['react  ', newline];
+    react_body_fuel_1 = ['  ', 'fuel=', fuel_1_name, ' ', reactant_amount_unit, '=', fuel_1_amount, '  ', 't,', reactant_temp_unit, '=', fuel_1_temp, '  '];
+    react_body_fuel_2 = ['  ', 'fuel=', fuel_2_name, ' ', reactant_amount_unit, '=', fuel_2_amount, '  ', 't,', reactant_temp_unit, '=', fuel_2_temp, '  '];
+    react_body_oxid = ['  ', 'oxid=', oxid_name, ' ', reactant_amount_unit, '=', oxid_amount, '  ', 't,', reactant_temp_unit, '=', oxid_temp, '  '];
+    react_body_fuel_1 = [react_body_fuel_1, newline]; react_body_fuel_2 = [react_body_fuel_2, newline]; react_body_oxid = [react_body_oxid, newline];
     
-    output_head = ['output  ', char(10)];
-    output_body = strcat('    plot', {' '}, output, ' ');
-    output_body = [output_body{1}, char(10)];
+    output_head = ['output  ', newline];
+    output_body = ['    plot', ' ', output, ' '];
+    output_body = [output_body, newline];
     
-    end_head = ['end', char(10)];
+    end_head = ['end', newline];
     
     
-    inp = [problem_head, problem_body, react_head, react_body_fuel, react_body_oxid, output_head, output_body, end_head];
+    inp = [problem_head, problem_body, react_head, react_body_fuel_1, react_body_fuel_2, react_body_oxid, output_head, output_body, end_head];
 end

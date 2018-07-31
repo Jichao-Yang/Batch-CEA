@@ -1,9 +1,7 @@
 clear; clc;
-%answer = inputdlg('Enter Fuel Density 1:',...
-% 'Sample', [1 50]);
 densityAL = 2.700; %str2num(answer{1});
-dataset = xlsread('CEAdata.xls','Sheet3','A1:I11');
-datasetphi = xlsread('CEAdata.xls','Sheet2','A1:H11');
+dataset = xlsread('CEAdata.xls','Sheet3','A1:I101');
+datasetphi = xlsread('CEAdata.xls','Sheet2','A1:H101');
 
 answer1 = inputdlg('Enter Fuel Composition Percentage for Test 1:',...
     'Sample', [1 50]);
@@ -76,9 +74,9 @@ l(1).LineWidth = 2;
 
 %====================ThirdGraph====================%
 
-y3 = rhof(10) .* dataset(:,7); % Untested
-y4 = rhof1(10) .* dataset(:,8); % Untested
-y5 = rhof2(10) .* dataset(:,9); % Untested
+y3 = rhof(100) .* dataset(:,7); % Untested
+y4 = rhof1(100) .* dataset(:,8); % Untested
+y5 = rhof2(100) .* dataset(:,9); % Untested
 
 ax3 = subplot(3,1,3); % bottom subplot
 m = plot(ax3,x,y3);
