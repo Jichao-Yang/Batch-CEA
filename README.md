@@ -1,4 +1,4 @@
-# CEA-2.0-GUI
+# Batch CEA
 An improved matlab gui for CEA execution
 
 All .m (matlab) files should be put under the same directory as the CEA executive
